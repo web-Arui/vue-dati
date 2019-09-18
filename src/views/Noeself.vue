@@ -8,7 +8,7 @@
       </main>
     </div>
     <div class="chart">
-      <img class="img" src="../images/chart.jpg" />
+       <img :src="avatar || require('../images/timg.jpg')" />
     </div>
     <div class="food">
       <div class="introduce">
@@ -52,7 +52,8 @@ export default {
   data() {
     return {
       path: "../images/fb-h.png",
-      name:''
+      name:'',
+      avatar:''
     };
   },
   methods: {
@@ -60,9 +61,9 @@ export default {
       const userId = localStorage.getItem('userId')
   
      const res = await  this.$axios.get('/users/'+userId)
-     const {name} = res.data.data
+     const {name,avatar} = res.data.data
      this.name = name
-  
+    this.avatar =avatar
     },
     toRoute(e) {
       let icon = document.querySelectorAll(".icon");//获取icon类
@@ -83,7 +84,7 @@ export default {
     },
     setUp(){ //设置
       this.$router.push({name:'setup'})
-    }
+    },
   },
   created(){
     this.getUser()
@@ -104,6 +105,8 @@ body {
   p {
     text-indent: 2em;
     margin-top: 1rem;
+    padding: 0 .4rem;
+    font-family: 'PingFangSC-Light';
   }
 
   .cover {
@@ -130,7 +133,7 @@ body {
     width: 3rem;
     height: 3rem;
     margin: 0 auto;
-    .img {
+    img {
       width: 100%;
       height: 100%;
       border-radius: 50%;

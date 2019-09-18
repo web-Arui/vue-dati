@@ -9,8 +9,14 @@
         </div>
         <div class="box-login">
           <div class="message"><div v-show="isShow">{{judge}}</div></div>
+          <label>
+            <i class="iconfont icona icon-yonghuming1"></i>
           <input type="text" class="username" placeholder="用户名" v-model="username"/>
+          </label>
+          <label>
+            <i class="iconfont iconb icon-mima"></i>
           <input type="password" placeholder="密码" class="password" v-model="password"/>
+          </label>
         </div>
         <div :class="uuu" @click="login">登陆</div>
       </div>
@@ -46,7 +52,6 @@ export default {
        if(this.username && this.password){
          this.$axios.post('/users/login',{name:this.username,password:this.password}).then(res=>{
          const {meta:{status,msg}} = res.data
-         console.log(res)
          if(status==500){
            this.isShow=true
            setTimeout(()=>{
@@ -75,9 +80,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
+
 .box {
+  font-size: 16px;
   background-color: #fff;
-  height: 60vh;
+  height: 7.15rem;
   width: 82vw;
   border-radius: 5%;
   display: flex;
@@ -115,6 +122,21 @@ export default {
   width: 100%;
   height: 60%;
 }
+label{
+  position: relative;
+}
+.iconb{
+  font-size: 20px;
+  position: absolute;
+  left: -.1rem;
+  top: .25rem;
+}
+.icona{
+  font-size: 20px;
+  position: absolute;
+  left: -.05rem;
+  top: .25rem;
+}
 .username,
 .password {
   margin-bottom: 0.5rem;
@@ -122,6 +144,8 @@ export default {
   border-bottom: 1px solid #000;
   outline: none; //鼠标点击隐藏黑色边框
   margin-top: 10px;
+  background: transparent;
+  padding-left: 1em;
 }
 input {
   height: 0.5rem;

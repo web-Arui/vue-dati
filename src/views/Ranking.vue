@@ -43,7 +43,7 @@
       <div class="personal" v-for="(item,index) in me" :key="index">
         <div class="number">{{index+1}}</div>
         <div class="picture">
-          <img :src="item.avatar || require('../images/11.jpg')" alt />
+          <img :src="item.avatar || require('../images/timg.jpg')" alt />
         </div>
         <div class="Nickname">{{item.name}}</div>
         <div class="score">{{item.bankf}}分</div>
@@ -51,7 +51,7 @@
     </div>
     <div class="oneself">
       <div class="oneself-picture">
-        <img :src="avatar || require('../images/11.jpg')" />
+        <img :src="avatar || require('../images/timg.jpg')" />
       </div>
       <div class="oneself-Nickname">
         <span class="name">{{usename}}</span>
@@ -111,8 +111,8 @@ body {
   font-size: 16px;
   color: #fff;
    background: url(../images/bg4.jpg) no-repeat;
-    background-size: 100% 100%;
-    height: 100%;
+    background-size: cover;
+    height: 100vh;
   .trophy {
     width: 2rem;
     height: 2rem;

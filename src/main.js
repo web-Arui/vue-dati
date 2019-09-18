@@ -7,10 +7,12 @@ Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
 import headers from '@/components/Header'
 Vue.component('Headers',headers)
+import loading from '@/components/loading'
+Vue.component('Loading',loading)
 
 import Axios from 'axios'
 Vue.prototype.$axios=Axios
-Axios.defaults.baseURL="http://txrui.cn/api"
+Axios.defaults.baseURL="http://dt.txrui.cn/api"
 // http://dt.zcmax.top/api
 //token
 Axios.interceptors.request.use(function(config){

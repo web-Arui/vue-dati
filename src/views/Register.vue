@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="kk">
     <Index>
       <div class="box">
         <div class="sonBox">
@@ -14,8 +14,14 @@
               <div v-show="isShow2">{{judge2}}</div>
               <div></div>
             </div>
-            <input type="text" class="username" placeholder="用户名" v-model="username" />
-            <input type="password" placeholder="密码1" class="password" v-model="password" />
+            <label>
+            <i class="iconfont icona icon-yonghuming1"></i>
+          <input type="text" class="username" placeholder="用户名" v-model="username"/>
+          </label>
+          <label>
+            <i class="iconfont iconb icon-mima"></i>
+          <input type="password" placeholder="密码" class="password" v-model="password"/>
+          </label>
           </div>
           <div :class="uuu" @click="resget">注册</div>
         </div>
@@ -76,11 +82,12 @@ export default {
             const {
               meta: { status, msg }
             } = res.data;
+            console.log(status)
             if (status == 200) {
               this.username = "";
               this.password = "";
               this.$router.push({ name: "login" });
-            } else if (msg == 409) {
+            } else if (status == 409) {
               this.isShow2 = true;
               this.judge2 = "账号已被注册";
               setTimeout(() => {
@@ -103,9 +110,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
+#kk{
+  font-size: 16px;
+}
 .box {
+  font-size: 16px;
   background-color: #fff;
-  height: 60vh;
+  height: 7.15rem;
   width: 82vw;
   border-radius: 5%;
   display: flex;
@@ -143,6 +154,21 @@ export default {
   width: 100%;
   height: 60%;
 }
+label{
+  position: relative;
+}
+.iconb{
+  font-size: 20px;
+  position: absolute;
+  left: -.1rem;
+  top: .25rem;
+}
+.icona{
+  font-size: 20px;
+  position: absolute;
+  left: -.05rem;
+  top: .25rem;
+}
 .username,
 .password {
   margin-bottom: 0.5rem;
@@ -150,16 +176,13 @@ export default {
   border-bottom: 1px solid #000;
   outline: none; //鼠标点击隐藏黑色边框
   margin-top: 10px;
+  background: transparent;
+  padding-left: 1em;
 }
 input {
   height: 0.5rem;
   width: 200px;
   border: 1px solid #000;
-}
-.message {
-  // margin-top: -1px;
-  height: 17px;
-  color: red;
 }
 .button {
   background-color: #fab4b4;
@@ -169,6 +192,11 @@ input {
   border-radius: 25px;
   text-align: center;
   line-height: 1rem;
+}
+.message{
+  // margin-top: -1px;
+  height: 17px;
+  color: red;
 }
 .login,
 .register {
@@ -183,7 +211,7 @@ input {
 .register{
   color: #f10100;
 }
-.zhou {
+.zhou{
   background-color: #f10100;
   background-image: linear-gradient(88deg, #f10100 0%, #ff4a15 74%);
 }

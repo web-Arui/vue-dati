@@ -1,16 +1,19 @@
 <template>
-  <div id="xing">
+<div v-if="loading">
+  <Loading />
+</div>
+  <div id="xing" v-else>
     <Headers title="答题" />
     <main>
       <div class="x-left">
-        <img src="../images/11.jpg" alt />
+        <img :src="avatar || require('../images/timg.jpg')" />
         <div class="x-lefts">
           <span class="firsta">挑战者</span>
           <span class="last">{{usename}}</span>
         </div>
       </div>
       <div class="x-right">
-        <div>以答对</div>
+        <div>已答对</div>
         <div>
           <span class="correct">{{score}}</span>
           <span>/10</span>
@@ -82,7 +85,9 @@ export default {
       interval:'', //定时器
       userId:'',  //用户id
       bankf:'', //最高成绩
-      usename:''//用户名字
+      usename:'',//用户名字
+      avatar:'',
+      loading:true
     };
   },
   created() {
@@ -95,8 +100,10 @@ export default {
       // console.log(res.data.data[0].bankTi)
       if (res.data.meta.msg == "ok") {
         this.lists = res.data.data[0].bankTi[this.id].zhou;
+        this.loading =false
       }
     });
+    
   },
 
   computed: {},
@@ -178,7 +185,7 @@ export default {
     },
     async put2(){ //查看用户当前成绩
       const res3 = await this.$axios.get('/users/'+this.userId)
-      // console.log(res3)
+      this.avatar = res3.data.data.avatar
       this.bankf = res3.data.data.bankf
       this.usename = res3.data.data.name
     }
@@ -195,7 +202,7 @@ export default {
   background: url(../images/bgq.jpg) no-repeat;
   background-size: 100% 100%;
   font-size: 16px;
-  height: 100%;
+  height: 100vh;
   main {
     width: 80%;
     height: 1.4rem;

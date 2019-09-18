@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="appcc">
     <div class="sbk"></div>
     <div class="header">
       <img src="../images/gl.png" alt />
@@ -29,19 +29,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
-html,
-body {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-}
 
-#app {
+#appcc {
  font-size: 16px;
   color: #eff3f3;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 //   border: 1px solid #0a39d0;
   background-image: url(../images/tgbj.jpg);
   display: flex;
